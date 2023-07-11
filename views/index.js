@@ -1,9 +1,8 @@
-async function saveToDatabase(event) {  
- 
+async function saveToDatabase(event) {
   const msg = document.querySelector('.msg');
 
-  try{
-       event.preventDefault();
+  try {
+    event.preventDefault();
     const price = event.target.price.value;
     const dish = event.target.dish.value;
     const tableNo = event.target.tableNo.value;
@@ -14,81 +13,82 @@ async function saveToDatabase(event) {
       tableNo
     }
 
-  const res =  await axios.post("http://localhost:4000/order/add-order",obj);
+    const res = await axios.post("http://localhost:4000/order/add-order", obj);
 
-      showNewOrderOnScreen(res.data);
+    showNewOrderOnScreen(res.data, tableNo);
 
-      msg.classList.add('success');
-      msg.innerHTML = 'Order Added Successfully';
-      setTimeout(() => msg.remove(), 3000);
-  
-  }catch(err){
-      console.log(err);
-    }
-  
+    msg.innerHTML = 'Order Added Successfully';
 
+    setTimeout(() => {
+      msg.innerHTML = '';
+    }, 2000);
+
+  } catch (err) {
+    console.log(err);
   }
+}
 
-  function showNewOrderOnScreen(order) {
+function showNewOrderOnScreen(order, tableNo) {
+  const { id, dish, price } = order;
 
-    document.getElementById('dish').value = '';
-   document.getElementById('tableNo').value = '';
-   document.getElementById('price').value = '';
+  const orderHTML = `
+    <li id="${id}">
+      ${dish} - ${price}/- 
+      <div class="order-buttons">
+        <input class="btn btn-outline-danger" onclick="deleteOrder('${id}')" value="Delete">
+        <input class="btn btn-outline-primary" onclick="editOrderDetails('${dish}', '${price}', '${tableNo}', '${id}')" value="Edit">
+      </div>
+    </li>
+  `;
+
+  const tableElement = document.getElementById(`${tableNo}`);
+
+    tableElement.innerHTML += orderHTML;
+ 
 
 
-   const parentNode = document.getElementById('orders');
-   const childHTML = ` <li id=${order.id}> ${order.dish} - ${order.price}
-   <input class="btn btn-outline-danger" onclick=deleteOrder('${order.id}') value ="Delete" >
-   <input class="btn btn-outline-primary" onclick=editOrderDetails('${order.dish}','${order.price}','${order.tableNo}','${order.id}') value ="Edit"> 
-                                  </li>`
+  document.getElementById('dish').value = '';
+  document.getElementById('tableNo').value = '';
+  document.getElementById('price').value = '';
+}
 
-   parentNode.innerHTML = parentNode.innerHTML + childHTML;
- }
-
- window.addEventListener("DOMContentLoaded", async () => {
-  try{
-   const res = await axios.get("http://localhost:4000/order/get-order")
-
-    for(var i=0;i<res.data.length; i++){
-    showNewOrderOnScreen(res.data[i]);
+window.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await axios.get("http://localhost:4000/order/get-order")
+      console.log(res);
+    for (let i = 0; i < res.data.length; i++) {
+      const order = res.data[i];
+      showNewOrderOnScreen(order, order.tableNo);
     }
-    // console.log(res)
-  } 
-   catch(err){
-
+  } catch (err) {
     console.log(err);
   }
 })
 
-function editOrderDetails(dish,price,tableNo,orderId){
-
+function editOrderDetails(dish, price, tableNo, orderId) {
   document.getElementById('tableNo').value = tableNo;
- document.getElementById('dish').value = dish;
- document.getElementById('price').value = price;
+  document.getElementById('dish').value = dish;
+  document.getElementById('price').value = price;
 
-
- deleteOrder(orderId)
-
+  deleteOrder(orderId);
 }
 
 async function deleteOrder(orderId) {
-  try{
-       await axios.delete(`http://localhost:4000/order/delete-order/${orderId}`)
-
-        removeOrderFromScreen(orderId)
-
-    } 
-      catch(err) {
-      console.log(err)
-    }
-
+  try {
+    await axios.delete(`http://localhost:4000/order/delete-order/${orderId}`);
+    removeOrderFromScreen(orderId);
+  } catch (err) {
+    console.log(err);
   }
+}
 
-  function removeOrderFromScreen(orderId) {
-    const parentNode = document.getElementById('orders');
-    const childNodeToBeDeleted = document.getElementById(orderId);
+function removeOrderFromScreen(orderId) {
+  const orderElement = document.getElementById(orderId);
 
-      parentNode.removeChild(childNodeToBeDeleted)
-
-
+  if (orderElement) {
+    const parentNode = orderElement.parentNode;
+    parentNode.removeChild(orderElement);
   }
+  
+}
+

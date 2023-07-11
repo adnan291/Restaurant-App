@@ -3,7 +3,7 @@ const Orders = require('../models/orders')
 exports.getAddOrders =( async (req,res,next)=>{
 
     try{
-        const data = await  Orders.findAll()
+        const data = await  Orders.findAll();
         res.json(data);
     }
     catch(err){
@@ -29,7 +29,6 @@ exports.postAddOrders=( async (req,res,next) => {
         console.log(err)
     };
 
-    //res.redirect('/');
 })
 
 exports.postDeleteOrders=( async (req, res,  next) => {

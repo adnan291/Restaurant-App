@@ -1,70 +1,125 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-  }
-  
-  ul {
-    list-style: none;
-  }
-  
-  ul li {
-    padding: 5px;
-    background: #f4f4f4;
-    margin: 5px 0;
-  }
-  
-  header {
-    background: #f4f4f4;
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  .container {
-    margin: auto;
-    width: 800px;
-    overflow: auto;
-    padding: 3rem 2rem;
-  }
-  
-  #my-form {
-    padding: 2rem;
-    background: #f4f4f4;
-  }
-  
-  #my-form label {
-    display: block;
-  }
-  
-  #my-form input{
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
+/* Set the font family and background color for the body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
 
-  
-  .error {
-    background: orangered;
-    color: #fff;
-    padding: 5px;
-    margin: 5px;
-  }
-  .success {
-    background: rgb(0, 255, 191);
-    color: #fff;
-    padding: 5px;
-    margin: 5px;
-  }
-  .btn-outline-primary, .btn-outline-danger { 
-    padding:5px;
-    margin: 5px;
-    max-width: 4pc;
-  }
-  
+/* Style the header with a dark background color and white text */
+header {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px;
+}
+
+/* Style the h1 tag */
+h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+/* Style the container section */
+.container {
+  margin-top: 20px;
+}
+
+/* Style the form */
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the form heading */
+form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Style the form input fields */
+form .form-control {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the form select field */
+form .form-select {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the submit button */
+.btn {
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #343a40;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Change the submit button color on hover */
+.btn:hover {
+  background-color: #fff;
+  color: #343a40;
+}
+
+/* Style the unordered lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style the list group */
+.list-group {
+  margin-top: 20px;
+}
+
+/* Style the list group items */
+.list-group-item {
+  background-color: #fff;
+  border: none;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Change the list group item color on hover */
+.list-group-item:hover {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Add a background color to the submit button on hover */
+.btn:hover {
+  background-color: #fff;
+  color: #343a40;
+  border: 1px solid #343a40;
+}
+
+/* Add a background color to the form select field on focus */
+.form-select:focus {
+  border-color: #343a40;
+  box-shadow: 0 0 10px rgba(52, 58, 64, 0.5);
+}
+
+/* Add a background color to the form input fields on focus */
+.form-control:focus {
+  border-color: #343a40;
+  box-shadow: 0 0 10px rgba(52, 58, 64, 0.5);
+}
+
+/* Align the order buttons to the right side of the list item */
+.order-buttons {
+  float: right;
+}

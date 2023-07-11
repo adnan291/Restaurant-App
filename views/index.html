@@ -15,20 +15,18 @@
         <form id="my-form" onsubmit="saveToDatabase(event)">
     <div class="container-sm">
         <h1>Add Order</h1>
-        <div class="msg"></div>
+        <div class="msg success"></div>
 
     <div class="mb-3">
-        <label for="price" class="form-label">Enter Price</label>
-        <input type="text" class="form-control" id="price" required>
+        <input type="number" class="form-control" id="price" placeholder="Enter Price" required>
       </div>
       
       <div class="mb-3">
-        <label for="dish" class="form-label">Enter Dish</label>
-        <input type="text" class="form-control" id="dish" required>
+        <input type="text" class="form-control" id="dish" placeholder="Enter Dish" required>
       </div>
 
       <select class="form-select" aria-label="Choose Table No" id="tableNo" required>
-        <option selected value="">Choose Table No</option>
+        <option selected value="">Choose Table No...</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -37,15 +35,22 @@
       <div>
         <div class="d-grid gap-2">
           <section></section>
-            <input class="btn btn-outline-success" type="submit" value="Submit">
+            <input class="btn btn-outline-secondary" type="submit" value="Submit">
           </div>
     </div>
     </div></form></section>
 
     <div class="container">
       <h2>All Orders</h2>
-        <ul id="orders" class="list-group">
-    
+
+          <h2>Table 1</h2>
+         <ul id="1" class="list-group"></ul>
+          <h2>Table 2</h2>
+         <ul id="2" class="list-group"></ul>
+          <h2>Table 3</h2>
+         <ul id="3" class="list-group"></ul>
+          <h2>Table 4</h2>
+         <ul id="4" class="list-group"></ul>
         </ul>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
